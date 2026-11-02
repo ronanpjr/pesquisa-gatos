@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+  }
+
+  html.js-reveal [data-reveal]:not(.is-popping) {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
   }
 }
