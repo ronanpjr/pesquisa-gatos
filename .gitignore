@@ -1,0 +1,7 @@
+node_modules/
+ref/
+assets/raw/
+assets/work/
+screenshots/*-full.png
+.DS_Store
+dudao_inventando_modas.pdf
