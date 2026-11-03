@@ -38,7 +38,7 @@
     "innerWidth": 1280,
     "scrollWidth": 1280,
     "docOverflow": false,
-    "flyerWidth": 600,
-    "flyerLeft": 340
+    "flyerWidth": 1200,
+    "flyerLeft": 40
   }
 ]

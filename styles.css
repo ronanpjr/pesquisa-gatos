@@ -1303,25 +1303,728 @@ a:focus-visible {
   white-space: nowrap;
 }
 
-/* ================= MOLDURA DESKTOP (>=760px) E GANCHOS P/ 2 COLUNAS ================= */
+/* ================= MOLDURA TABLET (>=760px) E MODO DESKTOP WIDESCREEN (>=1024px) ================= */
 @media (min-width: 760px) {
   body {
-    padding: calc(28 * 1px) calc(18 * 1px);
+    padding: 28px 18px;
   }
 
   .flyer {
-    border-radius: calc(26 * 1px);
+    border-radius: 26px;
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.65) inset,
-      0 calc(24 * 1px) calc(60 * 1px) rgba(61, 33, 8, 0.18);
+      0 24px 60px rgba(61, 33, 8, 0.18);
+  }
+}
+
+@media (min-width: 1024px) {
+  html:not(.pdf-ref-mode) {
+    --maxw: 1200px;
   }
 
-  /* Seletores preparados para futuro layout em 2 colunas (não ativado) */
-  .flyer[data-columns="2"] .procedure__grid,
-  .flyer[data-columns="2"] .safety__grid,
-  .flyer[data-columns="2"] .footer__inner {
+  html:not(.pdf-ref-mode) body {
+    padding: 36px 28px 56px;
+  }
+
+  html:not(.pdf-ref-mode) .flyer {
+    max-width: var(--maxw);
+    border-radius: 32px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  html:not(.pdf-ref-mode) .flyer > * {
+    grid-column: 1 / -1;
+    --u: calc(100cqw / 1840);
+  }
+
+  /* 1. BRAND (Header Horizontal Widescreen) */
+  html:not(.pdf-ref-mode) .brand {
+    min-height: auto;
+    padding: calc(28 * var(--u)) calc(80 * var(--u));
+    background: linear-gradient(180deg, #fffcf7 0%, var(--cream) 100%);
+    border-bottom: 2px dashed rgba(148, 156, 119, 0.4);
+  }
+
+  html:not(.pdf-ref-mode) .brand > .decor {
+    width: calc(680 * var(--u));
+    left: auto;
+    right: 0;
+    opacity: 0.85;
+  }
+
+  html:not(.pdf-ref-mode) .brand__lockup {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 2. HERO (2 Colunas: Texto à esquerda, Gato dormindo à direita) */
+  html:not(.pdf-ref-mode) .hero {
+    min-height: calc(760 * var(--u));
+    padding: calc(24 * var(--u)) calc(72 * var(--u)) calc(56 * var(--u));
+    background:
+      radial-gradient(circle at 76% 52%, rgba(223, 188, 192, 0.62) 0%, rgba(202, 203, 169, 0.32) 42%, transparent 68%),
+      linear-gradient(180deg, var(--cream) 0%, #f7ece0 100%);
+  }
+
+  html:not(.pdf-ref-mode) .hero .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .hero__scene {
+    min-height: calc(680 * var(--u));
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    align-items: center;
+    column-gap: calc(36 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .hero__title {
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: calc(-48 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .hero__intro {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: calc(10 * var(--u));
+    margin-left: calc(-36 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .hero__caption {
+    grid-column: 1;
+    grid-row: 3;
+    margin: calc(28 * var(--u)) auto 0;
+    width: calc(780 * var(--u));
+    padding: calc(24 * var(--u)) calc(36 * var(--u));
+    background: var(--cream-card);
+    border: 3px solid var(--pink);
+    border-radius: calc(36 * var(--u));
+    box-shadow: 0 calc(12 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.09);
+    transform: rotate(-1.2deg);
+  }
+
+  html:not(.pdf-ref-mode) .hero__photo {
+    position: relative;
+    left: auto;
+    top: auto;
+    grid-column: 2;
+    grid-row: 1 / 4;
+    justify-self: center;
+    width: calc(740 * var(--u));
+    height: calc(590 * var(--u));
+    object-fit: cover;
+    object-position: 52% 41%;
+    pointer-events: auto;
+    border-radius: calc(48 * var(--u));
+    border: calc(8 * var(--u)) solid var(--cream-card);
+    box-shadow: 0 calc(20 * var(--u)) calc(38 * var(--u)) rgba(62, 34, 8, 0.18);
+  }
+
+  /* 3. TRANSITION */
+  html:not(.pdf-ref-mode) .transition {
+    display: none;
+  }
+
+  /* 4. ABOUT (Ribbon + 2 Cards lado a lado) */
+  html:not(.pdf-ref-mode) .about {
+    min-height: auto;
+    padding: calc(48 * var(--u)) calc(84 * var(--u)) calc(68 * var(--u));
+    background: linear-gradient(180deg, #f7ece0 0%, rgba(223, 188, 192, 0.34) 100%);
+  }
+
+  html:not(.pdf-ref-mode) .about > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .about > .ribbon {
+    margin: 0 auto calc(36 * var(--u));
+    width: calc(620 * var(--u));
+    min-height: calc(165 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .about__title-svg {
+    width: calc(620 * var(--u));
+    height: calc(165 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .about__cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(56 * var(--u));
+    align-items: stretch;
+    max-width: calc(1560 * var(--u));
+    margin-inline: auto;
+  }
+
+  html:not(.pdf-ref-mode) .about__card,
+  html:not(.pdf-ref-mode) .about__card--offset {
+    width: 100%;
+    min-height: calc(330 * var(--u));
+    margin: 0;
+    padding: calc(56 * var(--u)) calc(44 * var(--u)) calc(40 * var(--u));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 5. WHO (2 Colunas: Critérios à esquerda, Filhote à direita) */
+  html:not(.pdf-ref-mode) .who {
+    min-height: calc(680 * var(--u));
+    padding: calc(48 * var(--u)) calc(84 * var(--u)) calc(170 * var(--u));
+    background-color: var(--sage);
+  }
+
+  html:not(.pdf-ref-mode) .who > .decor--stretch {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .who .decor--who-wave {
+    top: auto;
+    bottom: calc(-6 * var(--u));
+    width: 100%;
+    height: auto;
+  }
+
+  html:not(.pdf-ref-mode) .who__inner {
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    column-gap: calc(44 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .who__title {
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: calc(-20 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .who__lead {
+    grid-column: 1;
+    grid-row: 2;
+    margin: calc(24 * var(--u)) auto 0;
+    width: calc(740 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .who__free {
+    grid-column: 1;
+    grid-row: 3;
+    margin: calc(34 * var(--u)) auto 0;
+    width: calc(620 * var(--u));
+    padding: calc(20 * var(--u)) calc(36 * var(--u));
+    background: var(--cream-card);
+    border-radius: calc(999 * var(--u));
+    box-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(62, 34, 8, 0.1);
+  }
+
+  html:not(.pdf-ref-mode) .who__cat {
+    position: relative;
+    left: auto;
+    top: auto;
+    grid-column: 2;
+    grid-row: 1 / 4;
+    justify-self: center;
+    width: calc(430 * var(--u));
+    height: auto;
+    transform-origin: center center;
+    filter: drop-shadow(0 calc(16 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.2));
+  }
+
+  /* 6. HOW (Gato tigrado à esquerda + Pílula e 3 Etapas em grade horizontal à direita) */
+  html:not(.pdf-ref-mode) .how {
+    min-height: calc(580 * var(--u));
+    padding: calc(56 * var(--u)) calc(76 * var(--u)) calc(64 * var(--u));
+    display: grid;
+    grid-template-columns: 0.68fr 1.32fr;
+    align-items: center;
+    gap: calc(36 * var(--u));
+    background: var(--cream);
+  }
+
+  html:not(.pdf-ref-mode) .how > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .how__cat {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: calc(640 * var(--u));
+    height: auto;
+    justify-self: center;
+    margin-left: calc(-50 * var(--u));
+    filter: drop-shadow(0 calc(14 * var(--u)) calc(26 * var(--u)) rgba(62, 34, 8, 0.16));
+  }
+
+  html:not(.pdf-ref-mode) .how__content {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  html:not(.pdf-ref-mode) .how__pill {
+    margin-left: 0;
+    width: calc(680 * var(--u));
+    min-height: calc(185 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .steps {
+    margin: calc(42 * var(--u)) 0 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: calc(26 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .steps li {
+    flex-direction: column;
+    text-align: center;
+    justify-content: flex-start;
+    padding: calc(28 * var(--u)) calc(20 * var(--u));
+    background: var(--cream-card);
+    border: 2px solid rgba(148, 156, 119, 0.45);
+    border-radius: calc(32 * var(--u));
+    box-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(62, 34, 8, 0.07);
+  }
+
+  html:not(.pdf-ref-mode) .steps__icon {
+    width: calc(130 * var(--u));
+    height: calc(130 * var(--u));
+  }
+
+  /* 7. PROCEDURE (Dashboard em 2 Colunas) */
+  html:not(.pdf-ref-mode) .procedure {
+    min-height: auto;
+    padding: calc(64 * var(--u)) calc(80 * var(--u)) calc(76 * var(--u));
+    background: linear-gradient(180deg, rgba(223, 188, 192, 0.25) 0%, var(--cream) 48%, rgba(202, 203, 169, 0.25) 100%);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    column-gap: calc(48 * var(--u));
+    row-gap: calc(48 * var(--u));
+    align-items: center;
+  }
+
+  html:not(.pdf-ref-mode) .procedure > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .procedure__head {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(44 * var(--u));
+    background: var(--cream-card);
+    padding: calc(28 * var(--u)) calc(48 * var(--u));
+    border-radius: calc(36 * var(--u));
+    border: 2px solid rgba(223, 188, 192, 0.65);
+    box-shadow: 0 calc(12 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.07);
+  }
+
+  html:not(.pdf-ref-mode) .ribbon--pink {
+    margin-left: 0;
+    width: calc(540 * var(--u));
+    min-height: calc(122 * var(--u));
+    flex-shrink: 0;
+  }
+
+  html:not(.pdf-ref-mode) .procedure__intro {
+    margin: 0;
+    width: auto;
+    max-width: calc(960 * var(--u));
+    font-size: calc(36 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .procedure__grid {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(48 * var(--u));
+    justify-items: center;
+    align-items: stretch;
+  }
+
+  html:not(.pdf-ref-mode) .proc--sage {
+    width: calc(790 * var(--u));
+    min-height: calc(650 * var(--u));
+    padding-top: calc(82 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc h3 {
+    font-size: calc(58 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__sub {
+    font-size: calc(34 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc li {
+    font-size: calc(35 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__tube--purple {
+    width: calc(74 * var(--u));
+    height: calc(110 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__tube--red {
+    width: calc(52 * var(--u));
+    height: calc(102 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__meter {
+    width: calc(70 * var(--u));
+    height: calc(102 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc--sage h3 {
+    margin-left: calc(175 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc--sage > .proc__sub {
+    margin-left: calc(190 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__item--edta {
+    margin-top: calc(18 * var(--u));
+    margin-left: calc(215 * var(--u));
+    gap: calc(12 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__item--coag {
+    margin-top: calc(14 * var(--u));
+    margin-left: calc(85 * var(--u));
+    gap: calc(16 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__item--meter {
+    margin-top: calc(14 * var(--u));
+    margin-left: calc(225 * var(--u));
+    gap: calc(14 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc--pink {
+    width: calc(790 * var(--u));
+    min-height: calc(650 * var(--u));
+    margin: 0;
+    padding-top: calc(96 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc--pink h3 {
+    margin-left: calc(235 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc--pink > .proc__sub:not(.proc__sub--note) {
+    margin-left: calc(245 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__item--meter-cap {
+    margin-top: calc(40 * var(--u));
+    margin-left: calc(195 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .proc__sub--note {
+    margin-top: calc(38 * var(--u));
+    margin-left: calc(215 * var(--u));
+    width: calc(440 * var(--u));
+    font-size: calc(24 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .devices__title {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: start;
+    margin: 0 auto;
+    width: calc(520 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .devices__wrap {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: calc(118 * var(--u));
+    margin-left: calc(-90 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .note {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0 auto;
+    width: calc(780 * var(--u));
+    min-height: calc(365 * var(--u));
+  }
+
+  /* 8. COLLAGE (Panorama com os 3 gatos) */
+  html:not(.pdf-ref-mode) .collage {
+    min-height: calc(560 * var(--u));
+    background: linear-gradient(180deg, rgba(202, 203, 169, 0.25) 0%, var(--pink) 85%);
+    overflow: hidden;
+  }
+
+  html:not(.pdf-ref-mode) .collage__cats {
+    min-height: calc(560 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .collage__cat--tricolor {
+    left: calc(40 * var(--u));
+    top: calc(18 * var(--u));
+    z-index: 4;
+  }
+
+  html:not(.pdf-ref-mode) .collage__cat--pb {
+    left: calc(680 * var(--u));
+    top: calc(12 * var(--u));
+    width: calc(460 * var(--u));
+    height: calc(575 * var(--u));
+    z-index: 4;
+  }
+
+  html:not(.pdf-ref-mode) .collage__cat--preto {
+    left: calc(1220 * var(--u));
+    top: calc(12 * var(--u));
+    z-index: 4;
+  }
+
+  html:not(.pdf-ref-mode) .collage .decor--hills {
+    z-index: 2;
+  }
+
+  html:not(.pdf-ref-mode) .collage .decor--front {
+    z-index: 5;
+  }
+
+  html:not(.pdf-ref-mode) .collage .decor {
+    top: auto;
+    bottom: calc(-40 * var(--u));
+    width: 100%;
+    height: auto;
+  }
+
+  /* 9 & 10. DIFFERENCE + IMPACT (Lado a lado em 2 colunas) */
+  html:not(.pdf-ref-mode) .difference {
+    grid-column: 1 / 6;
+    min-height: calc(620 * var(--u));
+    padding: calc(48 * var(--u)) calc(36 * var(--u)) calc(48 * var(--u)) calc(72 * var(--u));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pink);
+  }
+
+  html:not(.pdf-ref-mode) .difference > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .difference h2 {
+    margin: 0;
+    width: 100%;
+    padding: calc(56 * var(--u)) calc(36 * var(--u));
+    background: var(--cream-card);
+    border-radius: calc(42 * var(--u));
+    box-shadow: 0 calc(14 * var(--u)) calc(32 * var(--u)) rgba(62, 34, 8, 0.12);
+  }
+
+  html:not(.pdf-ref-mode) .impact {
+    grid-column: 6 / -1;
+    min-height: calc(620 * var(--u));
+    padding: calc(48 * var(--u)) calc(72 * var(--u)) calc(48 * var(--u)) calc(36 * var(--u));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pink);
+    overflow: hidden;
+  }
+
+  html:not(.pdf-ref-mode) .impact > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .impact__dashes-img {
+    left: 50%;
+    top: 50%;
+    width: calc(960 * var(--u));
+    height: calc(720 * var(--u));
+    transform: translate(-50%, -50%);
+  }
+
+  html:not(.pdf-ref-mode) .impact p {
+    margin: 0;
+    width: calc(590 * var(--u));
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* 11. SAFETY (2 Cards largos lado a lado) */
+  html:not(.pdf-ref-mode) .safety {
+    min-height: auto;
+    margin-bottom: 0;
+    padding: calc(64 * var(--u)) calc(84 * var(--u)) calc(72 * var(--u));
+    background: var(--cream);
+  }
+
+  html:not(.pdf-ref-mode) .safety > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .safety__grid {
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(64 * var(--u));
+    max-width: calc(1560 * var(--u));
+    margin-inline: auto;
+  }
+
+  html:not(.pdf-ref-mode) .safety-card--sage,
+  html:not(.pdf-ref-mode) .safety-card--pink {
+    width: 100%;
+    padding: calc(32 * var(--u)) calc(44 * var(--u)) calc(44 * var(--u));
+    background: var(--cream-card);
+    border-radius: calc(40 * var(--u));
+    border: 2px solid rgba(148, 156, 119, 0.35);
+    box-shadow: 0 calc(12 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.08);
+  }
+
+  html:not(.pdf-ref-mode) .safety-card__title--sage,
+  html:not(.pdf-ref-mode) .safety-card__title--pink {
+    max-width: calc(520 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .safety-card--sage p,
+  html:not(.pdf-ref-mode) .safety-card--pink p {
+    margin-top: calc(24 * var(--u));
+    margin-inline: 0;
+  }
+
+  /* 12. TEAM (Grade 2x2 de pesquisadoras à esquerda + Gato à direita) */
+  html:not(.pdf-ref-mode) .team {
+    min-height: calc(640 * var(--u));
+    background-color: var(--sage);
+    padding: calc(56 * var(--u)) calc(84 * var(--u)) calc(180 * var(--u));
+    overflow: hidden;
+  }
+
+  html:not(.pdf-ref-mode) .team > .decor--stretch {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .team .decor--team-wave {
+    top: auto;
+    bottom: calc(-34 * var(--u));
+    width: 100%;
+    height: auto;
+  }
+
+  html:not(.pdf-ref-mode) .team__inner {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1.35fr 0.65fr;
+    align-items: center;
+    gap: calc(40 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .team h2 {
+    grid-column: 1;
+    margin-left: 0;
+  }
+
+  html:not(.pdf-ref-mode) .team__list {
+    grid-column: 1;
+    margin-top: calc(36 * var(--u));
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(28 * var(--u)) calc(36 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .team__list li {
+    padding: calc(22 * var(--u)) calc(24 * var(--u));
+    background: rgba(255, 249, 235, 0.78);
+    border-radius: calc(26 * var(--u));
+    align-items: center;
+    box-shadow: 0 calc(8 * var(--u)) calc(20 * var(--u)) rgba(62, 34, 8, 0.08);
+  }
+
+  html:not(.pdf-ref-mode) .team__cat {
+    position: relative;
+    left: auto;
+    top: auto;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    justify-self: center;
+    width: calc(480 * var(--u));
+    height: auto;
+    filter: drop-shadow(0 calc(16 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.2));
+  }
+
+  /* 13. FOOTER (Projeto à esquerda + Card de Contato amplo à direita) */
+  html:not(.pdf-ref-mode) .footer {
+    min-height: auto;
+    padding: calc(56 * var(--u)) calc(84 * var(--u)) calc(68 * var(--u));
+    background: var(--cream);
+  }
+
+  html:not(.pdf-ref-mode) .footer > .decor {
+    display: none;
+  }
+
+  html:not(.pdf-ref-mode) .footer__inner {
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: calc(56 * var(--u));
+    align-items: center;
+  }
+
+  html:not(.pdf-ref-mode) .footer__project {
+    width: 100%;
+    padding: calc(48 * var(--u)) calc(52 * var(--u));
+    background: var(--cream-card);
+    border: 3px solid var(--sage);
+    border-radius: calc(40 * var(--u));
+    box-shadow: 0 calc(12 * var(--u)) calc(28 * var(--u)) rgba(62, 34, 8, 0.08);
+  }
+
+  html:not(.pdf-ref-mode) .footer__unesp {
+    margin-left: 0;
+    margin-top: calc(32 * var(--u));
+    padding: calc(10 * var(--u)) calc(32 * var(--u));
+    background: var(--sage);
+    border-radius: calc(999 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .contact-card {
+    margin-left: 0;
+    justify-self: center;
+    width: calc(640 * var(--u));
+    min-height: calc(520 * var(--u));
+    padding: calc(104 * var(--u)) calc(44 * var(--u)) calc(36 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .contact-card h2 {
+    font-size: calc(48 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .contact-card__tel {
+    margin-top: calc(26 * var(--u));
+    margin-left: calc(90 * var(--u));
+    font-size: calc(38 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .contact-card__mail {
+    margin-top: calc(14 * var(--u));
+    margin-left: calc(82 * var(--u));
+    font-size: calc(28 * var(--u));
+  }
+
+  html:not(.pdf-ref-mode) .contact-card__note {
+    margin-top: calc(38 * var(--u));
+    font-size: calc(21 * var(--u));
   }
 }
 

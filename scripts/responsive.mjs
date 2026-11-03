@@ -20,7 +20,11 @@ const browser = await chromium.launch({ headless: true });
 const report = [];
 
 for (const w of WIDTHS) {
-  const page = await browser.newPage({ viewport: { width: w, height: 900 }, deviceScaleFactor: 2 });
+  const page = await browser.newPage({
+    viewport: { width: w, height: 900 },
+    deviceScaleFactor: 2,
+    reducedMotion: "reduce",
+  });
   await page.route("http://flyer.local/**", async (route) => {
     const u = new URL(route.request().url());
     let reqPath = decodeURIComponent(u.pathname);

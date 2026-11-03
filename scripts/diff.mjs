@@ -72,6 +72,7 @@ await page.addStyleTag({
 
 // Força carregamento de todas as imagens lazy e aguarda fontes + decodificação
 await page.evaluate(async () => {
+  document.documentElement.classList.add("pdf-ref-mode");
   for (const img of document.querySelectorAll("img")) {
     img.loading = "eager";
     try { await img.decode(); } catch {}
